@@ -9359,8 +9359,9 @@ curl -X POST --location "http://localhost:8099/compress/process" \
   03/22 08:54:24 TRACE  :......router_forward_getOI:         out inf:   9.67.116.98
   03/22 08:54:24 TRACE  :......router_forward_getOI:         gateway:   0.0.0.0
   03/22 08:54:24 TRACE  :......router_forward_getOI:         route handle:   7f5251c8 \"
-        }"
+}"
 ```
+
 ---
 ### References
 
