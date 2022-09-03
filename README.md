@@ -1,4 +1,4 @@
-# spring-boot-rest-compres
+# spring-boot-rest-compress
 
 Proof of concept to use Gzipped compressed message handle
 
