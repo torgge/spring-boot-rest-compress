@@ -4,6 +4,7 @@ import com.bonespirito.springbootrestcompress.domain.message.MessageDTO
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
@@ -22,20 +23,29 @@ class MessageResource {
     fun processMessage(
         @RequestHeader headers: Map<String, String>,
         @RequestBody message: MessageDTO
-    ): ResponseEntity<String> {
+    ): ResponseEntity<MessageDTO> {
         // Print headers
-        headers.forEach { (k: String, v: String) ->
-            LOG.info(
-                "$k=$v"
-            )
-        }
+//        headers.forEach { (k: String, v: String) ->
+//            LOG.info(
+//                "$k=$v"
+//            )
+//        }
 
-        return ResponseEntity.ok(PROCESSED + message.text)
+        logger.info("-=PROCESSED=-")
+        return ResponseEntity.ok(message)
     }
+
+    @GetMapping(value = [REQUEST_MAPPING])
+    fun get(): ResponseEntity<String> = ResponseEntity.ok(PROCESSED + BODY)
 
     companion object {
         protected const val PROCESSED = "Processed "
         protected const val REQUEST_MAPPING = "process"
-        private val LOG: Logger = LoggerFactory.getLogger(MessageResource::class.java)
+        protected const val BODY = "03/22 08:53:38 TRACE  :......router_forward_getOI:         source address:   9.67.116.98" +
+            "03/22 08:53:38 TRACE  :......router_forward_getOI:         out inf:   9.67.116.98" +
+            "03/22 08:53:38 TRACE  :......router_forward_getOI:         out inf:   9.67.116.98" +
+            "03/22 08:53:38 TRACE  :......router_forward_getOI:         out inf:   9.67.116.98" +
+            "03/22 08:53:38 TRACE  :......router_forward_getOI:         out inf:   9.67.116.98"
+        private val logger: Logger = LoggerFactory.getLogger(MessageResource::class.java)
     }
 }
